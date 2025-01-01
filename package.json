@@ -1,0 +1,30 @@
+{
+  "name": "unicplot",
+  "version": "0.0.1",
+  "description": "Make plots using unicode characters.",
+  "license": "MIT",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "jsdoc": "npx jsdoc src README.md -d docs/built -c docs/jsdoc.config.json",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
+  },
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "jest": "^27.5.1",
+    "jsdoc": "^3.6.10"
+  },
+  "author": {
+    "name": "Jayaram Kancherla",
+    "email": "jayaram.kancherla@gmail.com",
+    "url": "https://github.com/jkanche"
+  },
+  "bugs": "https://github.com/jkanche/unicplot/issues",
+  "keywords": [
+    "bioinformatics"
+  ],
+  "repository": "github:jkanche/unicplot",
+  "homepage": "https://github.com/jkanche/unicplot#readme"
+}

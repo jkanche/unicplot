@@ -1,0 +1,5 @@
+docs/built
+*.swp
+node_modules/
+package-lock.json
+playground

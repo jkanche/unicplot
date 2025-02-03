@@ -31,7 +31,7 @@ export class LinePlot extends UnicodeChart {
       this._drawLine(canvas, x1, y1, x2, y2, normalized[i], colorScheme);
     }
 
-    let output = title ? title + "\n" : "";
+    let output = title ? title + "<br />" : "";
 
     if (showAxis) {
       for (let y = 0; y < this.height; y++) {
@@ -44,7 +44,7 @@ export class LinePlot extends UnicodeChart {
     }
 
     for (let y = 0; y < this.height; y++) {
-      output += canvas[y].join("") + "\n";
+      output += canvas[y].join("") + "<br />";
     }
 
     return output;

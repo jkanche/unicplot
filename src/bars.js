@@ -14,7 +14,7 @@ export class BarPlot extends UnicodeChart {
     } = options;
 
     const normalized = this._normalize(data);
-    let output = title ? title + "\n" : "";
+    let output = title ? title + "<br />" : "";
 
     // Draw bars
     for (let i = 0; i < normalized.length; i++) {
@@ -25,7 +25,7 @@ export class BarPlot extends UnicodeChart {
       output += this._getColorCode(normalized[i], colorScheme);
       output += UnicodeChart.BLOCKS.full.repeat(barHeight);
       output += UnicodeChart.COLORS.reset;
-      output += "\n";
+      output += "<br />";
     }
 
     return output;

@@ -42,7 +42,7 @@ export class Histogram extends UnicodeChart {
 
     const { bins, binRanges } = this._createBins(data, numBins);
     const normalized = this._normalize(bins);
-    let output = title ? title + "\n" : "";
+    let output = title ? title + "<br />" : "";
 
     // Create vertical scale
     const maxCount = Math.max(...bins);
@@ -59,8 +59,8 @@ export class Histogram extends UnicodeChart {
       const barHeight = Math.round(normalized[i] * (this.height - 1));
       const binLabel = showBinLabels
         ? `[${binRanges[i].start.toFixed(1)}-${binRanges[i].end.toFixed(
-            1
-          )}]`.padEnd(15)
+          1
+        )}]`.padEnd(15)
         : String(i).padEnd(4);
 
       output += binLabel;
@@ -68,7 +68,7 @@ export class Histogram extends UnicodeChart {
       output += UnicodeChart.BLOCKS.full.repeat(barHeight);
       output += " " + bins[i].toString().padStart(3); // Show count
       output += UnicodeChart.COLORS.reset;
-      output += "\n";
+      output += "<br />";
     }
 
     return output;

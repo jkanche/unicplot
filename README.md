@@ -1,62 +1,69 @@
-# Generate simple visualzations using unicode characters
+# unicplot
 
-This is a fun package to generate simple plots using unicode characters.
+Generate visualizations using Unicode characters directly in your terminal or web browser.
 
-## Quick start
+## Installation
 
-```js
-console.log("\nBar Plot Example:");
-const barPlot = new BarPlot(40, 10);
-console.log(barPlot.render([1, 4, 2, 8, 5, 7], {
-    colorScheme: 'blue',
-    title: 'Monthly Sales (in thousands)'
-}));
-
-console.log("\nHeat Map Example:");
-const heatMap = new HeatMap(20, 10);
-console.log(heatMap.render([
-    [1, 2, 3, 4],
-    [2, 4, 5, 6],
-    [3, 5, 7, 8],
-    [4, 6, 8, 9]
-], {
-    colorScheme: 'red',
-    title: 'Temperature Map'
-}));
-
-// ScatterPlot
-console.log("\nScatter Plot Example:");
-const scatterPlot = new ScatterPlot(40, 15);
-console.log(scatterPlot.render([
-    [1, 2], [2, 4], [3, 3], [4, 5], [5, 4], [6, 7], [7, 6], [8, 8]
-], {
-    colorScheme: 'green',
-    title: 'Height vs Weight Correlation'
-}));
-
-// LinePlot
-console.log("\nLine Plot Example:");
-const linePlot = new LinePlot(40, 15);
-console.log(linePlot.render([1, 4, 2, 8, 5, 7, 6, 9, 4, 6], {
-    colorScheme: 'cyan',
-    title: 'Stock Price Over Time'
-}));
-
-const histogram = new Histogram(40, 15);
-
-// Generate some sample data (normal distribution)
-const sampleData = Array(1000).fill(0).map(() => {
-    let sum = 0;
-    for (let i = 0; i < 6; i++) {
-        sum += Math.random();
-    }
-    return sum;
-});
-
-console.log(histogram.render(sampleData, {
-    numBins: 12,
-    colorScheme: 'cyan',
-    title: 'Normal Distribution Histogram'
-}));
+```bash
+npm install unicplot
 ```
 
+## Usage
+
+### Bar Plot
+
+Create simple bar plots with custom dimensions:
+
+```javascript
+import { BarPlot } from "unicplot";
+
+const barPlot = new BarPlot(100, 30); // width: 100, height: 30
+const data = Array(30).fill(0).map(() => Math.floor(Math.random() * 10));
+const output = barPlot.render(data);
+
+// Browser
+document.querySelector("#barchart").innerHTML = output;
+
+// Node.js
+console.log(output);
+```
+
+### Histogram
+
+Generate histograms with automatic frequency calculations:
+
+```javascript
+import { Histogram } from "unicplot";
+
+const histogram = new Histogram(100, 30);
+const data = Array(30).fill(0).map(() => Math.floor(Math.random() * 10));
+const output = histogram.render(data);
+```
+
+### Heatmap
+
+Create heatmaps with two different styles:
+
+```javascript
+import { HeatMap } from "unicplot";
+
+const heatmap = new HeatMap(100, 30);
+const data = Array(7).fill().map(() => 
+  Array(30).fill(0).map(() => Math.floor(Math.random() * 10))
+);
+
+// Gradient-based heatmap
+const gradientOutput = heatmap.render(data);
+
+// Pattern-based heatmap
+const patternOutput = heatmap.render(data, {
+  colorScheme: "blue",
+  useSpectrum: false
+});
+```
+
+### Screenshots
+
+![baplot](./assets/barplot.png)
+![heatmap](./assets/heatmap.png)
+![heatmap](./assets/heatmap_pattern.png)

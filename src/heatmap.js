@@ -7,10 +7,11 @@ export class HeatMap extends UnicodeChart {
 
   render(data, options = {}) {
     const {
-      colorScheme = "blue",
+      colorScheme = "greens",
       showScale = true,
       labels = { x: null, y: null },
       title = "",
+      useSpectrum = true,
     } = options;
 
     const flattened = data.flat();
@@ -25,7 +26,7 @@ export class HeatMap extends UnicodeChart {
       }
     }
 
-    let output = title ? title + "\n" : "";
+    let output = title ? title + "<br />" : "";
 
     for (let i = 0; i < matrix.length; i++) {
       const row = matrix[i];
@@ -34,20 +35,35 @@ export class HeatMap extends UnicodeChart {
       output += yLabel;
       for (let j = 0; j < row.length; j++) {
         const value = row[j];
-        const intensity = Math.floor(value * 4);
-        const block = [
-          UnicodeChart.BLOCKS.empty,
-          UnicodeChart.BLOCKS.light,
-          UnicodeChart.BLOCKS.medium,
-          UnicodeChart.BLOCKS.dark,
-          UnicodeChart.BLOCKS.full,
-        ][intensity];
+        if (useSpectrum == true) {
+          const block = UnicodeChart.BLOCKS.full;
+          const color = this._getColorCode(value, colorScheme);
 
-        output += this._getColorCode(value, colorScheme);
-        output += block + block;
+          if (!Array.isArray(color)) {
+            throw `colors must be an array.`;
+          }
+
+          output += color[Math.floor(value * (color.length - 1))];
+          output += block + block;
+        } else {
+          const intensity = Math.floor(value * 4);
+          const block = [
+            UnicodeChart.BLOCKS.empty_fill,
+            UnicodeChart.BLOCKS.light,
+            UnicodeChart.BLOCKS.medium,
+            UnicodeChart.BLOCKS.dark,
+            UnicodeChart.BLOCKS.full,
+          ][intensity];
+
+          const color = this._getColorCode(value, colorScheme)
+
+          output += Array.isArray(color) ? color[0] : color;
+          output += block + block;
+        }
+
         output += UnicodeChart.COLORS.reset;
       }
-      output += "\n";
+      output += "<br />";
     }
 
     return output;

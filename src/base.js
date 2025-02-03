@@ -1,6 +1,7 @@
 export class UnicodeChart {
   static BLOCKS = {
     empty: " ",
+    empty_fill: "⠀",
     light: "░",
     medium: "▒",
     dark: "▓",
@@ -20,7 +21,7 @@ export class UnicodeChart {
     },
   };
 
-  static COLORS = {
+  static COLORS_UNICODE = {
     reset: "\x1b[0m",
     red: "\x1b[31m",
     green: "\x1b[32m",
@@ -28,6 +29,23 @@ export class UnicodeChart {
     blue: "\x1b[34m",
     magenta: "\x1b[35m",
     cyan: "\x1b[36m",
+  };
+
+  static COLORS = {
+    reset: "</span>",
+    bold: '<span style="font-weight: bold;">',
+    italic: '<span style="font-style: italic;">',
+    line_through: '<span style="text-decoration: line-through;">',
+    underline: '<span style="text-decoration: underline;">',
+    black: '<span style="color:black;">',
+    red: '<span style="color:red;">',
+    green: '<span style="color:green;">',
+    yellow: '<span style="color:yellow;">',
+    blue: '<span style="color:blue;">',
+    magenta: '<span style="color:magenta;">',
+    cyan: '<span style="color:cyan;">',
+    white: '<span style="color:white;">',
+    greens: ['#eeeeee', '#9be9a8', '#40c463', '#30a14e', '#216e39'].map(x => '<span style="color:' + x + ';">'),
   };
 
   constructor(width = 60, height = 20) {

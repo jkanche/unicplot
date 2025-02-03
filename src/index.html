@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <!-- <script src="../src/index.js"></script> -->
+    <style>
+        #barchart {
+            height: 275px;
+            width: 100vw;
+        }
+
+        #heatmap,
+        #heatmap2 {
+            height: 275px;
+            width: 100vw;
+        }
+
+        #histogram {
+            height: 275px;
+            width: 100vw;
+        }
+
+        #scatter {
+            height: 500px;
+            width: 100vw;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>bar chart</h3>
+    <p id="barchart"></p>
+    <script type="module">
+        import { BarPlot } from "./index.js";
+        let barPlot = new BarPlot(100, 30);
+        const dmax = 10;
+
+        const bdata = Array(8).fill(0).map(x => Math.floor(Math.random() * dmax));
+        const boutput = barPlot.render(bdata);
+
+        document.querySelector("#barchart").innerHTML = boutput;
+    </script>
+    <hr />
+
+    <h3>heatmap</h3>
+    <p id="heatmap"></p>
+    <script type="module">
+        import { HeatMap } from "./index.js";
+        let heatmap = new HeatMap(100, 30);
+        const max = 10
+
+        const hdata = [Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max))];
+        const houtput = heatmap.render(hdata);
+
+        document.querySelector("#heatmap").innerHTML = houtput;
+    </script>
+    <hr />
+
+    <h3>heatmap with pattern</h3>
+    <p id="heatmap2"></p>
+    <script type="module">
+        import { HeatMap } from "./index.js";
+        let heatmap2 = new HeatMap(100, 30);
+        const max = 10;
+
+        const hdata2 = [Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max)), Array(30).fill(0).map(x => Math.floor(Math.random() * max))];
+        const houtput2 = heatmap2.render(hdata2, { colorScheme: "blue", useSpectrum: false });
+
+        document.querySelector("#heatmap2").innerHTML = houtput2;
+    </script>
+    <hr />
+
+    <h3>histogram</h3>
+    <p id="histogram"></p>
+    <script type="module">
+        import { Histogram } from "./index.js";
+        let histogram = new Histogram(100, 30);
+        const hmax2 = 10
+
+        const histdata = Array(30).fill(0).map(x => Math.floor(Math.random() * hmax2));
+        const histoutput = histogram.render(histdata);
+
+        document.querySelector("#histogram").innerHTML = histoutput;
+    </script>
+    <hr />
+</body>
+
+</html>
